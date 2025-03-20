@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê Công văn Tuyển sinh CAND 2025</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #f4f4f4, #e0e0e0);
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .table-container:hover {
+            transform: scale(1.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #27ae60;
+            color: white;
+            font-size: 18px;
+        }
+
+        tr:hover {
+            background-color: rgba(39, 174, 96, 0.1);
+        }
+
+        .status {
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .status.yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .status.no {
+            background-color: #F44336;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .table-container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Thống kê Công văn Tuyển sinh CAND 2025</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Tỉnh</th>
+                    <th>Trạng Thái Công Văn</th>
+                </tr>
+            </thead>
+            <tbody id="provinceTable"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const provincesWithDocuments = [
+            "Khánh Hòa", "Đồng Nai", "Trà Vinh", "Đắk Lắk", "Quảng Nam", 
+            "Sóc Trăng", "Huế", "Hồ Chí Minh", "Gia Lai", "Lâm Đồng", 
+            "Hải Phòng", "Long An", "Bình Thuận", "Vĩnh Long", "Tiền Giang", 
+            "Cà Mau", "Quảng Trị", "Hà Tĩnh", "Bình Định"
+        ];
+
+        const totalProvinces = 63;
+        const allProvinces = [
+            "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
+            "Bắc Ninh", "Bến Tre", "Bình Dương", "Bình Định", "Bình Phước",
+            "Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng",
+            "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp",
+            "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh",
+            "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên",
+            "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng",
+            "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An",
+            "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình",
+            "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng",
+            "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa",
+            "Thừa Thiên Huế", "Tiền Giang", "TP Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
+            "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
+        ];
+
+        const tableBody = document.getElementById("provinceTable");
+
+        allProvinces.forEach((province, index) => {
+            const row = document.createElement("tr");
+
+            const cellIndex = document.createElement("td");
+            cellIndex.textContent = index + 1;
+
+            const cellProvince = document.createElement("td");
+            cellProvince.textContent = province;
+
+            const cellStatus = document.createElement("td");
+            const statusSpan = document.createElement("span");
+            statusSpan.classList.add("status");
+
+            if (provincesWithDocuments.includes(province)) {
+                statusSpan.textContent = "Đã có công văn";
+                statusSpan.classList.add("yes");
+            } else {
+                statusSpan.textContent = "Chưa có công văn";
+                statusSpan.classList.add("no");
+            }
+
+            cellStatus.appendChild(statusSpan);
+
+            row.appendChild(cellIndex);
+            row.appendChild(cellProvince);
+            row.appendChild(cellStatus);
+
+            tableBody.appendChild(row);
+        });
+    </script>
+
+</body>
+</html>

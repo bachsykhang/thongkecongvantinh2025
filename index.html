@@ -72,6 +72,11 @@
             color: white;
         }
 
+        .status.unknown {
+            background-color: #FFA500;
+            color: white;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .table-container {
@@ -83,10 +88,11 @@
 <body>
 
     <h2>Thống kê Công văn Tuyển sinh CAND 2025</h2>
-    <p style="color: red;">Cập nhật lần cuối: 14:50 - 21/03/2025 - (Số tỉnh có công văn: 
-        25/63)</p>
+    <p style="color: red;">Cập nhật lần cuối: 16:20 - 21/03/2025 - (Số tỉnh có công văn: 
+        24/63)</p>
     <p>
-        * Nếu bạn thấy có thông tin sai hoặc có tỉnh mới ra công văn thì liên hệ fb:<a href="https://www.facebook.com/sykhang.bach.12">Bạch Sỹ Khang</a> để admin cập nhật thông tin được chính xác nhất nhé. Xin cảm ơn !
+        * Nếu bạn thấy có thông tin sai hoặc có tỉnh mới ra công văn thì liên hệ fb: 
+        <a href="https://www.facebook.com/sykhang.bach.12">Bạch Sỹ Khang</a> để admin cập nhật thông tin được chính xác nhất nhé. Xin cảm ơn !
     </p>
     <p style="color: #F44336;">*Lưu ý: Thông tin được tổng hợp từ nhiều nguồn khác nhau nên có thể không chuẩn xác, vui lòng cân nhắc trước khi xem.</p>
 
@@ -109,11 +115,13 @@
             "Sóc Trăng", "Huế", "Hồ Chí Minh", "Gia Lai", "Lâm Đồng", 
             "Hải Phòng", "Long An", "Bình Thuận", "Vĩnh Long", "Tiền Giang", 
             "Cà Mau", "Quảng Trị", "Hà Tĩnh", "Bình Định", "TP Hồ Chí Minh",
-            "Hưng Yên", "Đồng Tháp", "Hà Giang", "Hà Nội", "Bắc Giang", "Quảng Ninh",
-
+            "Hưng Yên", "Đồng Tháp", "Hà Nội", "Bắc Giang", "Quảng Ninh"
         ];
 
-        const totalProvinces = 63;
+        const provincesUnknownStatus = [
+            "Hà Giang"
+        ];
+
         const allProvinces = [
             "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
             "Bắc Ninh", "Bến Tre", "Bình Dương", "Bình Định", "Bình Phước",
@@ -148,6 +156,9 @@
             if (provincesWithDocuments.includes(province)) {
                 statusSpan.textContent = "Đã có công văn";
                 statusSpan.classList.add("yes");
+            } else if (provincesUnknownStatus.includes(province)) {
+                statusSpan.textContent = "Chưa xác định";
+                statusSpan.classList.add("unknown");
             } else {
                 statusSpan.textContent = "Chưa có công văn";
                 statusSpan.classList.add("no");
